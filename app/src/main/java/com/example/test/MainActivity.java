@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.test.business.Keep;
+import com.example.test.utils.KeepsAdapter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 	private ArrayList<Keep> items;
-	private ArrayAdapter<Keep> itemsAdapter;
+	private KeepsAdapter itemsAdapter;
 	private ListView lvItems;
 
 	@Override
@@ -39,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
 		lvItems = (ListView) findViewById(R.id.lvItems);
 		items = new ArrayList<Keep>();
 //		readFromFile();
-		itemsAdapter = new ArrayAdapter<Keep>(this,
-				android.R.layout.simple_list_item_1, items);
+		itemsAdapter = new KeepsAdapter(this, items);
+//		itemsAdapter = new ArrayAdapter<Keep>(this, android.R.layout.simple_list_item_1, items);
+		lvItems = (ListView) findViewById(R.id.lvItems);
 		lvItems.setAdapter(itemsAdapter);
 		items.add(new Keep ("Titre 1", "Texte 2 etc etc..."));
 		items.add(new Keep ("Titre 2", "Encore un peu de texte :)"));
