@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.test.business.Keep;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,8 +25,8 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-	private ArrayList<String> items;
-	private ArrayAdapter<String> itemsAdapter;
+	private ArrayList<Keep> items;
+	private ArrayAdapter<Keep> itemsAdapter;
 	private ListView lvItems;
 
 	@Override
@@ -35,19 +37,19 @@ public class MainActivity extends AppCompatActivity {
 
 		// Ajout des items dans la list
 		lvItems = (ListView) findViewById(R.id.lvItems);
-		items = new ArrayList<String>();
-		readFromFile();
-		itemsAdapter = new ArrayAdapter<String>(this,
+		items = new ArrayList<Keep>();
+//		readFromFile();
+		itemsAdapter = new ArrayAdapter<Keep>(this,
 				android.R.layout.simple_list_item_1, items);
 		lvItems.setAdapter(itemsAdapter);
-		items.add("Faire ci");
-		items.add("Faire ca");
+		items.add(new Keep ("Titre 1", "Texte 2 etc etc..."));
+		items.add(new Keep ("Titre 2", "Encore un peu de texte :)"));
 
 		// Setup remove listener method call
 		setupListViewListener();
 	}
 
-	private void writeToFile() {
+/*	private void writeToFile() {
 		try {
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput("rieder.txt", Context.MODE_PRIVATE));
 			outputStreamWriter.write(String.valueOf(items));
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 		}
 		return ret;
 	}
+ */
 /*	private void readItems () {
 		File filesDir = getFilesDir();
 		File todoFile = new File(filesDir, "todo.txt");
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 						// Refresh the adapter
 						itemsAdapter.notifyDataSetChanged();
 						// Return true consumes the long click event (marks it handled)
-						writeToFile();
+//						writeToFile();
 						return true;
 					}
 				});
@@ -121,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
 	public void onAddItem(View view) {
 		EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
 		String itemText = etNewItem.getText().toString();
-		itemsAdapter.add(itemText);
+		itemsAdapter.add(new Keep("TT", itemText));
 		etNewItem.setText("");
-		writeToFile();
+//		writeToFile();
 	}
 }
