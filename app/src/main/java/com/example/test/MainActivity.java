@@ -2,33 +2,22 @@ package com.example.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.FileUtils;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.test.business.Keep;
 import com.example.test.utils.KeepsAdapter;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-	private ArrayList<Keep> items;
-	private KeepsAdapter itemsAdapter;
-	private ListView lvItems;
+	int cpt = 0; // Pour numéroter les titres
+	private ArrayList<Keep> keeps = new ArrayList<>();
+	private KeepsAdapter keepsAdapter; // Pour formater (?) les keeps
+	private ListView listViewKeeps; // Pour afficher la liste des Keeps
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +26,15 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		// Ajout des items dans la list
-		lvItems = (ListView) findViewById(R.id.lvItems);
-		items = new ArrayList<Keep>();
+		listViewKeeps = (ListView) findViewById(R.id.lvItems);
+//		keeps = new ArrayList<Keep>();
 //		readFromFile();
-		itemsAdapter = new KeepsAdapter(this, items);
+		keepsAdapter = new KeepsAdapter(this, keeps);
 //		itemsAdapter = new ArrayAdapter<Keep>(this, android.R.layout.simple_list_item_1, items);
-		lvItems = (ListView) findViewById(R.id.lvItems);
-		lvItems.setAdapter(itemsAdapter);
-		items.add(new Keep ("Titre 1", "Texte 2 etc etc..."));
-		items.add(new Keep ("Titre 2", "Encore un peu de texte :)"));
+		listViewKeeps = (ListView) findViewById(R.id.lvItems);
+		listViewKeeps.setAdapter(keepsAdapter);
+		keeps.add(new Keep ("Titre " + cpt++, "du Texte etc etc..."));
+		keeps.add(new Keep ("Titre " + cpt++, "Encore un peu de texte :)"));
 
 		// Setup remove listener method call
 		setupListViewListener();
@@ -107,15 +96,14 @@ public class MainActivity extends AppCompatActivity {
 	}
 */
 	private void setupListViewListener() {
-		lvItems.setOnItemLongClickListener(
+		listViewKeeps.setOnItemLongClickListener(
 				new AdapterView.OnItemLongClickListener() {
 					@Override
-					public boolean onItemLongClick(AdapterView<?> adapter,
-												   View item, int pos, long id) {
+					public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
 						// Remove the item within array at position
-						items.remove(pos);
+						keeps.remove(pos);
 						// Refresh the adapter
-						itemsAdapter.notifyDataSetChanged();
+						keepsAdapter.notifyDataSetChanged();
 						// Return true consumes the long click event (marks it handled)
 //						writeToFile();
 						return true;
@@ -126,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 	public void onAddItem(View view) {
 		EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
 		String itemText = etNewItem.getText().toString();
-		itemsAdapter.add(new Keep("TT", itemText));
+		keepsAdapter.add(new Keep("Titre " + cpt++, itemText));
 		etNewItem.setText("");
 //		writeToFile();
 	}

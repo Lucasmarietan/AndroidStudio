@@ -2,6 +2,8 @@ package com.example.test.business;
 
 import java.util.Date;
 
+// Pour notre type de notes
+
 public class Keep {
 	private String titre;
 	private String texte;
