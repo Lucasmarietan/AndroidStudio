@@ -2,6 +2,8 @@ package com.example.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -96,6 +98,23 @@ public class MainActivity extends AppCompatActivity {
 	}
 */
 	private void setupListViewListener() {
+		listViewKeeps.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				if (position == 0) {
+					Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
+					startActivityForResult(myIntent, 0);
+				}
+				if (position == 1) {
+					Intent myIntent = new Intent(view.getContext(), ListItemActivity2.class);
+					startActivityForResult(myIntent, 0);
+				}
+//				KeepsAdapter item = (KeepsAdapter) parent.getItemAtPosition(position);
+//				Intent intent = new Intent(view.getContext(), KeepsAdapter.class);
+				//based on item add info to intent
+//				startActivity(intent);
+			}
+		});
 		listViewKeeps.setOnItemLongClickListener(
 				new AdapterView.OnItemLongClickListener() {
 					@Override
