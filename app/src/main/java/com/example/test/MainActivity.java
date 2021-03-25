@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 //		keeps = new ArrayList<Keep>();
 //		readFromFile();
 		keepsAdapter = new KeepsAdapter(this, keeps);
-//		itemsAdapter = new ArrayAdapter<Keep>(this, android.R.layout.simple_list_item_1, items);
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
 		listViewKeeps.setAdapter(keepsAdapter);
 		keeps.add(new Keep ("Titre " + cpt++, "du Texte etc etc..."));
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 		listViewKeeps.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-/*				listViewKeeps.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+				listViewKeeps.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 						if (position == 0) {
@@ -116,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
 						}
 					}
 				});
-*/				if (position == 0) {
+/*				if (position == 0) {
 					Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
-					myIntent.putExtra("Keep", (Serializable) keeps.get(position));
+					myIntent.putExtra("Keep", keeps.get(position));
 //					Bundle b = new Bundle();
 //					b.putInt("key", 12345);
 //					myIntent.putExtras(b);
@@ -133,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 //					startActivityForResult(myIntent, 0);
 //					finish();
 				}
-				if (position == 1) {
+*/				if (position == 1) {
 					Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
 					Bundle b = new Bundle();
 					b.putInt("key", 54321);
