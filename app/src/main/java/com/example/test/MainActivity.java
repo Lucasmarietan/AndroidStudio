@@ -13,6 +13,8 @@ import android.widget.ListView;
 
 import com.example.test.business.Keep;
 import com.example.test.utils.KeepsAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 //		setRetainInstance (true);
 		setContentView(R.layout.activity_main);
+
+		FloatingActionButton fab = findViewById(R.id.fab);
+		fab.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
+				String itemText = etNewItem.getText().toString();
+				keepsAdapter.add(new Keep("Titre " + cpt++, itemText));
+				etNewItem.setText("");			}
+		});
 
 		// Ajout des items dans la list
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
