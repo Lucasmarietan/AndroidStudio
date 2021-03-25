@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.test.business.Keep;
@@ -34,20 +35,24 @@ public class MainActivity extends AppCompatActivity {
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) { // Quand on clique sur le bouton, ça ouvre un pop-up
-				final EditText taskEditText = new EditText(MainActivity.this);
+				LinearLayout ll = new LinearLayout(MainActivity.this); // Layout pour insérer 2 editText dans le pop-up
+				final EditText titreEditText = new EditText(MainActivity.this);
+				titreEditText.setHint("Saisissez votre titre"); // Affiche en arrière plan ou on écrit
+				ll.addView(titreEditText);
+				final EditText textEditText = new EditText(MainActivity.this);
+				textEditText.setHint("Saisissez votre texte");
+				ll.addView(textEditText);
 				AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
-						.setTitle("Add a new task")
-						.setMessage("What do you want to do next?")
-						.setView(taskEditText)
-						.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+						.setTitle("Ajouter une nouvelle note")
+						.setMessage("Saisissez votre titre")
+						.setView(ll) // Récupère le Layout
+						.setPositiveButton("Ajouter note", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) { // ça met le texte dans la liste des keeps
-								String task = String.valueOf(taskEditText.getText());
-								keepsAdapter.add(new Keep("Titre " + cpt++, task));
+//								String task = String.valueOf(titreEditText.getText());
+								keepsAdapter.add(new Keep(String.valueOf(titreEditText.getText()), String.valueOf(textEditText.getText())));
 							}
-						})
-						.setNegativeButton("Cancel", null)
-						.create();
+						}).setNegativeButton("Annuler", null).create();
 				dialog.show();
 			}
 		});
