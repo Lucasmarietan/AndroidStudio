@@ -31,19 +31,19 @@ public class MainActivity extends AppCompatActivity {
 //		setRetainInstance (true);
 		setContentView(R.layout.activity_main);
 
-		FloatingActionButton fab = findViewById(R.id.fab);
+		FloatingActionButton fab = findViewById(R.id.fab); // Bouton flottant
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View view) {
+			public void onClick(View view) { // Quand on clique sur le bouton, ça ajoute le texte dans keeps
 				EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
 				String itemText = etNewItem.getText().toString();
 				keepsAdapter.add(new Keep("Titre " + cpt++, itemText));
-				etNewItem.setText("");			}
+				etNewItem.setText("");
+			}
 		});
 
 		// Ajout des items dans la list
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
-//		keeps = new ArrayList<Keep>();
 //		readFromFile();
 		keepsAdapter = new KeepsAdapter(this, keeps);
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 //					startActivityForResult(myIntent, 0);
 //					finish();
 				}
-*/				if (position == 1) {
+*/				/*if (position == 1) {
 					Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
 					Bundle b = new Bundle();
 					b.putInt("key", 54321);
@@ -152,15 +152,14 @@ public class MainActivity extends AppCompatActivity {
 					startActivity(myIntent);
 //					startActivityForResult(myIntent, 0);
 //					finish();
-				}
+				}*/
 //				KeepsAdapter item = (KeepsAdapter) parent.getItemAtPosition(position);
 //				Intent intent = new Intent(view.getContext(), KeepsAdapter.class);
 				//based on item add info to intent
 //				startActivity(intent);
 			}
 		});
-		listViewKeeps.setOnItemLongClickListener(
-				new AdapterView.OnItemLongClickListener() {
+		listViewKeeps.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 					@Override
 					public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
 						// Remove the item within array at position
@@ -168,17 +167,8 @@ public class MainActivity extends AppCompatActivity {
 						// Refresh the adapter
 						keepsAdapter.notifyDataSetChanged();
 						// Return true consumes the long click event (marks it handled)
-//						writeToFile();
 						return true;
 					}
 				});
-	}
-
-	public void onAddItem(View view) {
-		EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
-		String itemText = etNewItem.getText().toString();
-		keepsAdapter.add(new Keep("Titre " + cpt++, itemText));
-		etNewItem.setText("");
-//		writeToFile();
 	}
 }
