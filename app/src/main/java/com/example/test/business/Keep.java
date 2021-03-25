@@ -1,5 +1,6 @@
 package com.example.test.business;
 
+import java.io.Serializable;
 import java.util.Date;
 
 // Pour notre type de notes

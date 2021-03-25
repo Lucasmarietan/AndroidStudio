@@ -3,6 +3,7 @@ package com.example.test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import com.example.test.business.Keep;
 import com.example.test.utils.KeepsAdapter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -101,13 +103,44 @@ public class MainActivity extends AppCompatActivity {
 		listViewKeeps.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				if (position == 0) {
+/*				listViewKeeps.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						if (position == 0) {
+							Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
+							startActivityForResult(myIntent, 0);
+						}
+						if (position == 1) {
+							Intent myIntent = new Intent(view.getContext(), ListItemActivity2.class);
+							startActivityForResult(myIntent, 0);
+						}
+					}
+				});
+*/				if (position == 0) {
 					Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
-					startActivityForResult(myIntent, 0);
+					myIntent.putExtra("Keep", (Serializable) keeps.get(position));
+//					Bundle b = new Bundle();
+//					b.putInt("key", 12345);
+//					myIntent.putExtras(b);
+					try {
+						startActivity(myIntent);
+					} catch (ActivityNotFoundException e) {
+
+						// Define what your app should do if no activity can handle the intent.
+					}
+
+					startActivity(myIntent);
+//					startActivityForResult(myIntent, 0);
+//					finish();
 				}
 				if (position == 1) {
-					Intent myIntent = new Intent(view.getContext(), ListItemActivity2.class);
-					startActivityForResult(myIntent, 0);
+					Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
+					Bundle b = new Bundle();
+					b.putInt("key", 54321);
+					myIntent.putExtras(b);
+					startActivity(myIntent);
+//					startActivityForResult(myIntent, 0);
+//					finish();
 				}
 //				KeepsAdapter item = (KeepsAdapter) parent.getItemAtPosition(position);
 //				Intent intent = new Intent(view.getContext(), KeepsAdapter.class);
