@@ -34,8 +34,4 @@ public class KeepsAdapter extends ArrayAdapter<Keep> {
 		// Return the completed view to render on screen
 		return convertView;
 	}
-
-//	public Keep getItem(int position){
-//		return items.get(position);
-//	}
 }

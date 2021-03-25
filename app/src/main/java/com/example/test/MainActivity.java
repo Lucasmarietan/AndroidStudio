@@ -3,12 +3,9 @@ package com.example.test;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -17,9 +14,7 @@ import android.widget.ListView;
 import com.example.test.business.Keep;
 import com.example.test.utils.KeepsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 							public void onClick(DialogInterface dialog, int which) { // ça met le texte dans la liste des keeps
 								String task = String.valueOf(taskEditText.getText());
 								keepsAdapter.add(new Keep("Titre " + cpt++, task));
-								Log.d(TAG, "Task to add: " + task);
 							}
 						})
 						.setNegativeButton("Cancel", null)
@@ -60,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
 		// Ajout des items dans la list
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
-//		readFromFile();
 		keepsAdapter = new KeepsAdapter(this, keeps);
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
 		listViewKeeps.setAdapter(keepsAdapter);
@@ -71,61 +64,6 @@ public class MainActivity extends AppCompatActivity {
 		setupListViewListener();
 	}
 
-/*	private void writeToFile() {
-		try {
-			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput("rieder.txt", Context.MODE_PRIVATE));
-			outputStreamWriter.write(String.valueOf(items));
-			outputStreamWriter.close();
-		}
-		catch (IOException e) {
-			Log.e("Exception", "File write failed: " + e.toString());
-		}
-	}
-
-	private String readFromFile () {
-		String ret = "";
-		try {
-			InputStream inputStream = openFileInput("rieder.txt");
-			if ( inputStream != null ) {
-				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-				String receiveString = "";
-				StringBuilder stringBuilder = new StringBuilder();
-
-				while ((receiveString = bufferedReader.readLine()) != null )
-					stringBuilder.append("\n").append(receiveString);
-				inputStream.close();
-				ret = stringBuilder.toString();
-			}
-		}
-		catch (FileNotFoundException e) {
-			Log.e("login activity", "File not found: " + e.toString());
-		} catch (IOException e) {
-			Log.e("login activity", "Can not read file: " + e.toString());
-		}
-		return ret;
-	}
- */
-/*	private void readItems () {
-		File filesDir = getFilesDir();
-		File todoFile = new File(filesDir, "todo.txt");
-		try {
-			items = new ArrayList<String> (FileUtils.readLines (todoFile));
-		} catch (IOException e) {
-			items = new ArrayList<String>();
-		}
-	}
-
-	private void writeItems () {
-		File filesDir = getFilesDir();
-		File todoFile = new File(filesDir, "todo.txt");
-		try {
-			FileUtils.writeLines (todoFile, items);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-*/
 	private void setupListViewListener() {
 		listViewKeeps.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 			@Override
@@ -143,36 +81,6 @@ public class MainActivity extends AppCompatActivity {
 						}
 					}
 				});
-/*				if (position == 0) {
-					Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
-					myIntent.putExtra("Keep", keeps.get(position));
-//					Bundle b = new Bundle();
-//					b.putInt("key", 12345);
-//					myIntent.putExtras(b);
-					try {
-						startActivity(myIntent);
-					} catch (ActivityNotFoundException e) {
-
-						// Define what your app should do if no activity can handle the intent.
-					}
-
-					startActivity(myIntent);
-//					startActivityForResult(myIntent, 0);
-//					finish();
-				}
-*/				/*if (position == 1) {
-					Intent myIntent = new Intent(view.getContext(), ListItemActivity1.class);
-					Bundle b = new Bundle();
-					b.putInt("key", 54321);
-					myIntent.putExtras(b);
-					startActivity(myIntent);
-//					startActivityForResult(myIntent, 0);
-//					finish();
-				}*/
-//				KeepsAdapter item = (KeepsAdapter) parent.getItemAtPosition(position);
-//				Intent intent = new Intent(view.getContext(), KeepsAdapter.class);
-				//based on item add info to intent
-//				startActivity(intent);
 			}
 		});
 		listViewKeeps.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
