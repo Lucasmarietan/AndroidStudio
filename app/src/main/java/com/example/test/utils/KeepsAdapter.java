@@ -3,6 +3,7 @@ package com.example.test.utils;
 // Pour formatter les listes
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,9 @@ public class KeepsAdapter extends ArrayAdapter<Keep> {
 		// Populate the data into the template view using the data objec
 		tvTitre.setText(keep.getTitre());
 		tvTexte.setText(keep.getTexte());
+//		tvTitre.setTextColor(keep.getBackgroundColor()); // Fonctionne pas (fais disparaitre le texte)
+//		tvTexte.setTextColor(keep.getBackgroundColor()); // Fonctionne pas (fais disparaitre la texte)
+//		convertView.setBackgroundColor(121212); // Rien ne change...
 		// Return the completed view to render on screen
 		return convertView;
 	}

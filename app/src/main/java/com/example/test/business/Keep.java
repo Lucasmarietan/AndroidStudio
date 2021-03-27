@@ -10,6 +10,7 @@ public class Keep {
 	private String tag;
 	private boolean done = false;
 	private Date dateLimite;
+	private int backgroundColor;
 
 	public Keep () {
 
@@ -20,12 +21,19 @@ public class Keep {
 		this.texte = texte;
 	}
 
-	public Keep(String titre, String texte, String tag, boolean done, Date dateLimite) {
+	public Keep(String titre, String texte, int backgroundColor) {
+		this.titre = titre;
+		this.texte = texte;
+		this.backgroundColor = backgroundColor;
+	}
+
+	public Keep(String titre, String texte, String tag, boolean done, Date dateLimite, int backgroundColor) {
 		this.titre = titre;
 		this.texte = texte;
 		this.tag = tag;
 		this.done = done;
 		this.dateLimite = dateLimite;
+		this.backgroundColor = backgroundColor;
 	}
 
 	public String getTitre() {
@@ -66,6 +74,14 @@ public class Keep {
 
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+
+	public int getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(int backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
 
 	@Override

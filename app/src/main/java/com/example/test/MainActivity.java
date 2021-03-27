@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
 		keepsAdapter = new KeepsAdapter(this, keeps);
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
 		listViewKeeps.setAdapter(keepsAdapter);
-		keeps.add(new Keep ("Titre " + cpt++, "du Texte etc etc..."));
-		keeps.add(new Keep ("Titre " + cpt++, "Encore un peu de texte :)"));
+		keeps.add(new Keep ("Titre " + cpt++, "du Texte etc etc...", 0x353535));
+		keeps.add(new Keep ("Titre " + cpt++, "Encore un peu de texte :)", 0x111111));
 		// Setup remove listener method call
 		setupListViewListener();
 	}
