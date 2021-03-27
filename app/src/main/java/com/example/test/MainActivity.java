@@ -43,13 +43,10 @@ public class MainActivity extends AppCompatActivity {
 				textEditText.setHint("Saisissez votre texte");
 				ll.addView(textEditText);
 				AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
-						.setTitle("Ajouter une nouvelle note")
-						.setMessage("Saisissez votre titre")
-						.setView(ll) // Récupère le Layout
+						.setTitle("Ajouter une nouvelle note").setView(ll) // Récupère le Layout
 						.setPositiveButton("Ajouter note", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) { // ça met le texte dans la liste des keeps
-//								String task = String.valueOf(titreEditText.getText());
 								keepsAdapter.add(new Keep(String.valueOf(titreEditText.getText()), String.valueOf(textEditText.getText())));
 							}
 						}).setNegativeButton("Annuler", null).create();
@@ -64,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 		listViewKeeps.setAdapter(keepsAdapter);
 		keeps.add(new Keep ("Titre " + cpt++, "du Texte etc etc..."));
 		keeps.add(new Keep ("Titre " + cpt++, "Encore un peu de texte :)"));
-
 		// Setup remove listener method call
 		setupListViewListener();
 	}
