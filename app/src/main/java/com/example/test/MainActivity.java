@@ -121,4 +121,19 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 	}
+
+	/**
+	 * Ebauche pour la changement de vue de la page d'accueil
+	 * Un bouton doit être créé dans les 2 layouts qui sur un onCick appelle cette méthode
+	 * Mais vraiment pas (!) très fonctionnel (perte de la listView, pas de réutilisation du code, etc...)
+	 * Si qqn trouve une solution c'est volontiers :))
+	 */
+/*	public void changeLayout(View view) {
+		int layout = 1; // A instancier dans MainActivity.class
+		if (this.layout == 1)
+			setContentView(R.layout.activity_main_linear); // Layout à créer basé sur le LinearConstraint
+		else
+			setContentView(R.layout.activity_main);
+		this.layout = this.layout * -1; // Pour passer du négatif au positif
+	}*/
 }
