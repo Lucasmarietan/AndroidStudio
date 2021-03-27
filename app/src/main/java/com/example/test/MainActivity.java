@@ -54,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-		// Ajout des items dans la list
-		listViewKeeps = (ListView) findViewById(R.id.lvItems);
+		listViewKeeps = (ListView) findViewById(R.id.lvItems); // Ajout des items dans la list
 		keepsAdapter = new KeepsAdapter(this, keeps);
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
 		listViewKeeps.setAdapter(keepsAdapter);
@@ -85,14 +84,19 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		listViewKeeps.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-					@Override
+					@Override // Pour supprimer la note avec un long clic
 					public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
-						// Remove the item within array at position
-						keeps.remove(pos);
-						// Refresh the adapter
-						keepsAdapter.notifyDataSetChanged();
-						// Return true consumes the long click event (marks it handled)
-						return true;
+						AlertDialog dialog = new AlertDialog.Builder(MainActivity.this) // Pop up pour confirmer la suppression
+								.setTitle("Voulez-vous vraiment supprimer cette note ?")
+								.setPositiveButton("Supprimer la note", new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										keeps.remove(pos);
+										keepsAdapter.notifyDataSetChanged();
+									}
+								}).setNegativeButton("Annuler", null).create();
+						dialog.show();
+						return true; // Marque la fin du clic
 					}
 				});
 	}

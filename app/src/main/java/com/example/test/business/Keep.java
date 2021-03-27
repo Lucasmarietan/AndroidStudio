@@ -7,6 +7,7 @@ import java.util.Date;
 public class Keep {
 	private String titre;
 	private String texte;
+	private String tag;
 	private boolean done = false;
 	private Date dateLimite;
 
@@ -19,9 +20,10 @@ public class Keep {
 		this.texte = texte;
 	}
 
-	public Keep(String titre, String texte, boolean done, Date dateLimite) {
+	public Keep(String titre, String texte, String tag, boolean done, Date dateLimite) {
 		this.titre = titre;
 		this.texte = texte;
+		this.tag = tag;
 		this.done = done;
 		this.dateLimite = dateLimite;
 	}
@@ -56,6 +58,14 @@ public class Keep {
 
 	public void setDateLimite(Date dateLimite) {
 		this.dateLimite = dateLimite;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	@Override
