@@ -22,4 +22,23 @@
 		android:id="@+id/kkey"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" />
+
+<!--	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/buttonColorFAB"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentEnd="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:layout_gravity="bottom|end"
+		android:layout_margin="15dp"
+		app:srcCompat="@android:drawable/ic_menu_add"
+		tools:layout_editor_absoluteX="341dp"
+		tools:layout_editor_absoluteY="661dp" />
+-->
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="dialogColorPicker"
+		android:id="@+id/buttonColor"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
