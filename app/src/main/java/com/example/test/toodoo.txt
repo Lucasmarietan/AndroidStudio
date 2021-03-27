@@ -1,0 +1,24 @@
+Liste des choses à faire : (* : obligatoire; - : fait; ? : optionnel)
+*   Système de persistance
+*       Cliquer sur une note dans la liste et l'afficher
+*           Changer la couleur de fond
+
+*   Changer la dispo de la page d'accueil (Linear et Relative Layout)
+*       Bouton pour choisir
+*       Couleur de fond pour la note
+?       Epingler une note ?
+
+*   Ajouter une "Liste à cocher" pour des éléments d'une note
+
+*   Ajouter images aux notes
+*   Ajouter les tags aux notes
+?       A quoi ils servent ?
+
+?   Ajout fonction de recherche ?
+
+-   Ajouter échéance aux notes
+*       Notif quand fini
+
+*   Mise en page de l'app
+*       Boutons dans le ToolBar (sauf FAB)
+?       Affichage de la date de la dernière modif
