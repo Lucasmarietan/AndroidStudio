@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,6 +30,8 @@ import java.util.Date;
 import static java.lang.String.format;
 
 public class MainActivity extends AppCompatActivity {
+	private int layout = 1;
+	private Button buttonLayout;
 	private static final String TAG = "MainActivity";
 	int cpt = 0; // Pour numéroter les titres
 	private ArrayList<Keep> keeps = new ArrayList<>();
@@ -37,8 +41,15 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		setRetainInstance (true);
 		setContentView(R.layout.activity_main);
+
+		findViewById(R.id.buttonLayout).setBackgroundColor(467687);
+		findViewById(R.id.buttonLayout).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				setContentView(R.layout.activity_main_linear);
+			}
+		});
 
 		FloatingActionButton fab = findViewById(R.id.fab); // Bouton flottant
 		fab.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 		keepsAdapter = new KeepsAdapter(this, keeps);
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
 		listViewKeeps.setAdapter(keepsAdapter);
-		keeps.add(new Keep("Titre " + cpt++, "du Texte etc etc... avec un saut à la ligne pasq on a bcp de chose à écrire ici"));
+		keeps.add(new Keep("Titre " + cpt++, "du Texte etc etc... "));
 		keeps.add(new Keep("Titre " + cpt++, "Encore un peu de texte :)"));
 		// Setup remove listener method call
 		setupListViewListener();
@@ -120,5 +131,13 @@ public class MainActivity extends AppCompatActivity {
 				return true; // Marque la fin du clic
 			}
 		});
+	}
+
+	public void changeLayout(View view) {
+		if (this.layout > 0)
+			setContentView(R.layout.activity_main_linear);
+		else
+			setContentView(R.layout.activity_main);
+		this.layout = this.layout * -1;
 	}
 }
