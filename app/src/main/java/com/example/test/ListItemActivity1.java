@@ -27,9 +27,9 @@ public class ListItemActivity1 extends AppCompatActivity {
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate (savedInstanceState);
 		setContentView (R.layout.activity_list_item1);
-		Button colorButton = findViewById(R.id.buttonColor);
+//		Button colorButton = findViewById(R.id.buttonColor);
 
-/*		FloatingActionButton fab = findViewById (R.id.buttonColor);
+		FloatingActionButton fab = findViewById (R.id.buttonColorFAB);
 		fab.setOnClickListener (
 				new View.OnClickListener () {
 					@Override
@@ -60,10 +60,9 @@ public class ListItemActivity1 extends AppCompatActivity {
 					}
 				}
 		);
-*/
-	}
+}
 
-	public void dialogColorPicker (View view) {
+/*	public void dialogColorPicker (View view) {
 			ColorPickerDialogBuilder
 					.with (getApplicationContext())
 					.setTitle ("Choisissez votre couleur")
@@ -90,5 +89,5 @@ public class ListItemActivity1 extends AppCompatActivity {
 //		Toast toast = Toast.makeText(this, "SALAM !", Toast.LENGTH_LONG);
 //		toast.show();
 	}
-
+*/
 }
