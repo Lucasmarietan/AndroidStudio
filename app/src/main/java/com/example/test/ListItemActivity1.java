@@ -32,7 +32,7 @@ public class ListItemActivity1 extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_item1);
-		root = findViewById(R.id.testColor);
+		root = findViewById(R.id.testColor); // On récupère la vue correspondante
 		findViewById(R.id.buttonColor).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
