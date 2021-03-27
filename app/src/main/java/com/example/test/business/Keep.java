@@ -9,15 +9,17 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 // Pour notre type de notes
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class Keep {
 	private String titre;
 	private String texte;
 	private String tag;
 	private boolean done = false;
-	private LocalDate dateLimite;
+	private LocalDate dateLimite = LocalDate.parse("2000-01-01"); // Pour éviter un NullPointerException dans KeepsAdapter
 
 	public Keep () {
 
@@ -67,13 +69,16 @@ public class Keep {
 		return dateLimite;
 	}
 
-	@RequiresApi(api = Build.VERSION_CODES.O)
-	public String getDateLimiteString () {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yy");
-		return this.dateLimite.format(formatter);
+//	@RequiresApi(api = Build.VERSION_CODES.O)
+//	public String getDateLimiteString () {
+//		DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+
+//		String outputText = outputFormat.format(date);
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yy");
+//		return this.dateLimite.format(formatter);
 //		DateFormat df = new SimpleDateFormat("dd-mm-yy");
 //		return df.format(this.dateLimite);
-	}
+//	}
 
 	public void setDateLimite(LocalDate dateLimite) {
 		this.dateLimite = dateLimite;

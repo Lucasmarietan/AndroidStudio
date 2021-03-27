@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.test.R;
 import com.example.test.business.Keep;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class KeepsAdapter extends ArrayAdapter<Keep> {
@@ -30,7 +31,10 @@ public class KeepsAdapter extends ArrayAdapter<Keep> {
 //		Remplit la vue
 		tvTitre.setText(keep.getTitre());
 		tvTexte.setText(keep.getTexte());
-//		tvDate.setText(keep.getDateLimite().toString());
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");//formating according to my need
+//		String date = formatter.format(keep.getDateLimite());
+//		tvDate.setText(date);
+		tvDate.setText(keep.getDateLimite().toString());
 		return convertView;
 	}
 }
