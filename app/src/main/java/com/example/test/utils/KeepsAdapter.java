@@ -20,18 +20,17 @@ public class KeepsAdapter extends ArrayAdapter<Keep> {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// Get the data item for this position
-		Keep keep = getItem (position);
-		// Check if an existing view is being reused, otherwise inflate the view
-		if (convertView == null)
+		Keep keep = getItem (position); // Récupère la note
+		if (convertView == null) // Crée la vue si nécessaire
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_keep, parent, false);
-		// Lookup view for data population
+//		Récupère les id des éléments de la vue
 		TextView tvTitre = (TextView) convertView.findViewById(R.id.Keep_Titre);
 		TextView tvTexte = (TextView) convertView.findViewById(R.id.Keep_Texte);
-		// Populate the data into the template view using the data objec
+		TextView tvDate = (TextView) convertView.findViewById(R.id.Keep_Date);
+//		Remplit la vue
 		tvTitre.setText(keep.getTitre());
 		tvTexte.setText(keep.getTexte());
-		// Return the completed view to render on screen
+//		tvDate.setText(keep.getDateLimite().toString());
 		return convertView;
 	}
 }

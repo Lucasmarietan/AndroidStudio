@@ -1,5 +1,13 @@
 package com.example.test.business;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 // Pour notre type de notes
@@ -9,7 +17,7 @@ public class Keep {
 	private String texte;
 	private String tag;
 	private boolean done = false;
-	private Date dateLimite;
+	private LocalDate dateLimite;
 
 	public Keep () {
 
@@ -20,12 +28,15 @@ public class Keep {
 		this.texte = texte;
 	}
 
-	public Keep(String titre, String texte, String tag, boolean done, Date dateLimite) {
-		this.titre = titre;
-		this.texte = texte;
+	public Keep (String titre, String texte, LocalDate dateLimite) {
+		this (titre, texte);
+		this.dateLimite = dateLimite;
+	}
+
+	public Keep (String titre, String texte, String tag, boolean done, LocalDate dateLimite) {
+		this(titre, texte, dateLimite);
 		this.tag = tag;
 		this.done = done;
-		this.dateLimite = dateLimite;
 	}
 
 	public String getTitre() {
@@ -52,11 +63,19 @@ public class Keep {
 		this.done = done;
 	}
 
-	public Date getDateLimite() {
+	public LocalDate getDateLimite() {
 		return dateLimite;
 	}
 
-	public void setDateLimite(Date dateLimite) {
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	public String getDateLimiteString () {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yy");
+		return this.dateLimite.format(formatter);
+//		DateFormat df = new SimpleDateFormat("dd-mm-yy");
+//		return df.format(this.dateLimite);
+	}
+
+	public void setDateLimite(LocalDate dateLimite) {
 		this.dateLimite = dateLimite;
 	}
 
