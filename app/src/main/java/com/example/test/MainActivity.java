@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.security.keystore.StrongBoxUnavailableException;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 		keepsAdapter = new KeepsAdapter(this, keeps);
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
 		listViewKeeps.setAdapter(keepsAdapter);
-		keeps.add(new Keep("Titre " + cpt++, "du Texte etc etc...", 0x233445));
+		keeps.add(new Keep("Titre " + cpt++, "du Texte etc etc...", 0x999945));
 		keeps.add(new Keep("Titre " + cpt++, "Encore un peu de texte :)", 0x655443));
 		// Setup remove listener method call
 		setupListViewListener();
@@ -138,9 +139,14 @@ public class MainActivity extends AppCompatActivity {
 						.wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
 						.density(12)
 						.setPositiveButton("OK", new ColorPickerClickListener() {
+							@RequiresApi(api = Build.VERSION_CODES.O)
 							@Override
 							public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-								keeps.get(position).setBackgroundColor(selectedColor);
+								Log.d("CCLLRR : ", String.valueOf(selectedColor));
+								keepsAdapter.getItem(position).setBackgroundColor(selectedColor);
+//								keeps.get(position).setBackgroundColor(selectedColor);
+//								Log.d("CCLLRR kp :", String.valueOf(keeps.get(position).getBackgroundColor()));
+//								keepsAdapter.notifyDataSetChanged();
 							}
 						})
 						.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {

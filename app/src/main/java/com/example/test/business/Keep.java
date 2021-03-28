@@ -78,6 +78,10 @@ public class Keep {
 		this.backgroundColor = backgroundColor;
 	}
 
+	public String getColorString () {
+		return String.valueOf(this.backgroundColor);
+	}
+
 	//	@RequiresApi(api = Build.VERSION_CODES.O)
 //	public String getDateLimiteString () {
 //		DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);

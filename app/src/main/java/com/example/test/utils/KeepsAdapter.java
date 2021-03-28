@@ -5,6 +5,7 @@ package com.example.test.utils;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class KeepsAdapter extends ArrayAdapter<Keep> {
 		TextView tvTitre = (TextView) convertView.findViewById(R.id.Keep_Titre);
 		TextView tvTexte = (TextView) convertView.findViewById(R.id.Keep_Texte);
 		TextView tvDate = (TextView) convertView.findViewById(R.id.Keep_Date);
+		TextView tvCouleur = (TextView) convertView.findViewById(R.id.Keep_Color);
 //		Remplit la vue
 		tvTitre.setText(keep.getTitre());
 		tvTexte.setText(keep.getTexte());
@@ -40,8 +42,9 @@ public class KeepsAdapter extends ArrayAdapter<Keep> {
 //		String date = formatter.format(keep.getDateLimite());
 //		tvDate.setText(date);
 		tvDate.setText(keep.getDateLimite().toString());
+		Log.d("Couleur de la note", keep.getColorString());
+		tvCouleur.setText(keep.getColorString());
 
-//		convertView.setBackgroundColor(0x343434);
 		convertView.setBackgroundColor(Color.toArgb(keep.getBackgroundColor()));
 //		((TextView)convertView).setText((String)getItem(position));
 		return convertView;
