@@ -3,12 +3,15 @@ package com.example.test;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.security.keystore.StrongBoxUnavailableException;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
@@ -18,6 +21,9 @@ import android.widget.ListView;
 
 import com.example.test.business.Keep;
 import com.example.test.utils.KeepsAdapter;
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
@@ -105,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		listViewKeeps.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-			@Override // Pour supprimer la note avec un long clic
+/*			@Override // Pour supprimer la note avec un long clic
 			public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
 				AlertDialog dialog = new AlertDialog.Builder(MainActivity.this) // Pop up pour confirmer la suppression
 						.setTitle("Voulez-vous vraiment supprimer cette note ?")
@@ -115,20 +121,49 @@ public class MainActivity extends AppCompatActivity {
 								keeps.remove(pos);
 								keepsAdapter.notifyDataSetChanged();
 							}
-						}).setNegativeButton("Annuler", null)
+						})
+						.setNegativeButton("Annuler", null)
 						.create();
 				dialog.show();
 				return true; // Marque la fin du clic
-			}
+			} */ // Commenter jusqu'ici pour tester le color picker
+
+			@Override // Pour sélectionner une couleur de fond pour la note
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+				final Context context = MainActivity.this;
+				ColorPickerDialogBuilder
+						.with(context)
+						.setTitle("Choisissez votre couleur de fond")
+						.initialColor(0xFFF)
+						.wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+						.density(12)
+						.setPositiveButton("OK", new ColorPickerClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+								keeps.get(position).setBackgroundColor(selectedColor);
+							}
+						})
+						.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+							}
+						})
+						.showColorEdit(true)
+						.setColorEditTextColor(ContextCompat.getColor(MainActivity.this, android.R.color.holo_blue_bright))
+						.build()
+						.show();
+				return true;
+			} // Commenter jusqu'ici pour tester le pop up de suppression
 		});
 	}
 
-	/**
-	 * Ebauche pour la changement de vue de la page d'accueil
-	 * Un bouton doit être créé dans les 2 layouts qui sur un onCick appelle cette méthode
-	 * Mais vraiment pas (!) très fonctionnel (perte de la listView, pas de réutilisation du code, etc...)
-	 * Si qqn trouve une solution c'est volontiers :))
-	 */
+
+/**
+ * Ebauche pour la changement de vue de la page d'accueil
+ * Un bouton doit être créé dans les 2 layouts qui sur un onCick appelle cette méthode
+ * Mais vraiment pas (!) très fonctionnel (perte de la listView, pas de réutilisation du code, etc...)
+ * Si qqn trouve une solution c'est volontiers :))
+ */
 /*	public void changeLayout(View view) {
 		int layout = 1; // A instancier dans MainActivity.class
 		if (this.layout == 1)

@@ -24,5 +24,11 @@
 		android:layout_height="wrap_content"
 		android:layout_margin="8dp"
 		android:text="TextXML" />
+	<TextView
+		android:id="@+id/Keep_Color"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="8dp"
+		android:text="TextXML" />
 
 </LinearLayout>
