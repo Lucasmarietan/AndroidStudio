@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
 		keepsAdapter = new KeepsAdapter(this, keeps);
 		listViewKeeps = (ListView) findViewById(R.id.lvItems);
 		listViewKeeps.setAdapter(keepsAdapter);
-		keeps.add(new Keep("Titre " + cpt++, "du Texte etc etc... avec un saut à la ligne pasq on a bcp de chose à écrire ici"));
-		keeps.add(new Keep("Titre " + cpt++, "Encore un peu de texte :)"));
+		keeps.add(new Keep("Titre " + cpt++, "du Texte etc etc...", 0x233445));
+		keeps.add(new Keep("Titre " + cpt++, "Encore un peu de texte :)", 0x655443));
 		// Setup remove listener method call
 		setupListViewListener();
 	}
@@ -115,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
 								keeps.remove(pos);
 								keepsAdapter.notifyDataSetChanged();
 							}
-						}).setNegativeButton("Annuler", null).create();
+						}).setNegativeButton("Annuler", null)
+						.create();
 				dialog.show();
 				return true; // Marque la fin du clic
 			}

@@ -4,12 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
 
 // Pour notre type de notes
 
@@ -19,6 +14,7 @@ public class Keep {
 	private String texte;
 	private String tag;
 	private boolean done = false;
+	private int backgroundColor;
 	private LocalDate dateLimite = LocalDate.parse("2000-01-01"); // Pour éviter un NullPointerException dans KeepsAdapter
 
 	public Keep () {
@@ -28,6 +24,11 @@ public class Keep {
 	public Keep (String titre, String texte) {
 		this.titre = titre;
 		this.texte = texte;
+	}
+
+	public Keep (String titre, String texte, int backgroundColor) {
+		this (titre, texte);
+		this.backgroundColor = backgroundColor;
 	}
 
 	public Keep (String titre, String texte, LocalDate dateLimite) {
@@ -69,7 +70,15 @@ public class Keep {
 		return dateLimite;
 	}
 
-//	@RequiresApi(api = Build.VERSION_CODES.O)
+	public int getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(int backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+
+	//	@RequiresApi(api = Build.VERSION_CODES.O)
 //	public String getDateLimiteString () {
 //		DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 

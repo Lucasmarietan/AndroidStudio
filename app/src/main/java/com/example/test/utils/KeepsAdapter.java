@@ -3,11 +3,15 @@ package com.example.test.utils;
 // Pour formatter les listes
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.test.R;
 import com.example.test.business.Keep;
@@ -20,6 +24,7 @@ public class KeepsAdapter extends ArrayAdapter<Keep> {
 		super(context, 0, keeps);
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.O)
 	public View getView(int position, View convertView, ViewGroup parent) {
 		Keep keep = getItem (position); // Récupère la note
 		if (convertView == null) // Crée la vue si nécessaire
@@ -35,6 +40,10 @@ public class KeepsAdapter extends ArrayAdapter<Keep> {
 //		String date = formatter.format(keep.getDateLimite());
 //		tvDate.setText(date);
 		tvDate.setText(keep.getDateLimite().toString());
+
+//		convertView.setBackgroundColor(0x343434);
+		convertView.setBackgroundColor(Color.toArgb(keep.getBackgroundColor()));
+//		((TextView)convertView).setText((String)getItem(position));
 		return convertView;
 	}
 }
