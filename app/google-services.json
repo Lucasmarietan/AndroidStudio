@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "962559018168",
+    "project_id": "keepheg",
+    "storage_bucket": "keepheg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962559018168:android:6a874d85e59a5be606e04d",
+        "android_client_info": {
+          "package_name": "com.example.splashscreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962559018168-ben227bcjn996jv2k81hi34adugg3ip5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXW4ExTP_MKTJuouGvT8EQq1uHRwMoRko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962559018168-ben227bcjn996jv2k81hi34adugg3ip5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962559018168:android:9e9d5709e972489806e04d",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962559018168-ben227bcjn996jv2k81hi34adugg3ip5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXW4ExTP_MKTJuouGvT8EQq1uHRwMoRko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962559018168-ben227bcjn996jv2k81hi34adugg3ip5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

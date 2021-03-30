@@ -10,6 +10,22 @@ import java.time.LocalDate;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class Keep {
+	public static final String TABLE_NAME = "keeps";
+	public static final String COLUMN_NUM = "num";
+	public static final String COLUMN_TITRE = "titre";
+	public static final String COLUMN_TEXTE = "texte";
+	public static final String COLUMN_TAG = "tag";
+	public static final String COLUMN_BG_COLOR = "bg_color";
+
+	public static final String CREATE_TABLE =
+		"CREATE TABLE " + TABLE_NAME + "("
+			+ COLUMN_NUM + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+			+ COLUMN_TITRE + " TEXT,"
+			+ COLUMN_TEXTE + " TEXT,"
+			+ COLUMN_TAG + " TEXT,"
+			+ COLUMN_BG_COLOR + " TEXT"
+			+ ")";
+
 	private String titre;
 	private String texte;
 	private String tag;
