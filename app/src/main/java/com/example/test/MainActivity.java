@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.test.business.Keep;
-import com.example.test.storage.KeepBDHelper;
+import com.example.test.storage.KeepDBHelper;
 import com.example.test.utils.KeepsAdapter;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
@@ -38,65 +38,20 @@ public class MainActivity extends AppCompatActivity {
 	private ArrayList<Keep> keeps = new ArrayList<>();
 	private KeepsAdapter keepsAdapter; // Pour formater (?) les keeps
 	private ListView listViewKeeps; // Pour afficher la liste des Keeps
-	private KeepBDHelper db;
+	private KeepDBHelper db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setRetainInstance (true);
 		setContentView(R.layout.activity_main);
-		db = new KeepBDHelper(this);
+
+//		Test de Base de données
+		db = new KeepDBHelper(this);
 		long idKeep = db.insertKeep(new Keep("Keep 1", "Un texte de la BDD"));
 		Log.d("L'ID du Keep mis dans la BDD :", String.valueOf(idKeep));
 		Keep keepDB = db.getKeep(idKeep);
 		Log.d("Le titre du Keep recup de la BDD", keepDB.getTitre());
-
-
-/*		KeepBDHelper dbHelper = new KeepBDHelper(MainActivity.this);
-//		 Gets the data repository in write mode
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-//		 Create a new map of values, where column names are the keys
-		ContentValues values = new ContentValues();
-		values.put(KeepContract.KeepEntry.COLUMN_NAME_TITRE, "Keep 1");
-		values.put(KeepContract.KeepEntry.COLUMN_NAME_TEXTE, "Du texte pour ce keep");
-//		Insert the new row, returning the primary key value of the new row
-		long newRowId = db.insert(KeepContract.KeepEntry.TABLE_NAME, null, values);
-
-		db = dbHelper.getReadableDatabase();
-
-// Define a projection that specifies which columns from the database
-// you will actually use after this query.
-		String[] projection = {
-				BaseColumns._ID, KeepContract.KeepEntry.COLUMN_NAME_TITRE, KeepContract.KeepEntry.COLUMN_NAME_TEXTE
-		};
-
-// Filter results WHERE "title" = 'My Title'
-		String selection = KeepContract.KeepEntry.COLUMN_NAME_TITRE + " = ?";
-		String[] selectionArgs = { "Keep 1" };
-
-// How you want the results sorted in the resulting Cursor
-//		String sortOrder =
-//				KeepContract.KeepEntry.COLUMN_NAME_SUBTITLE + " DESC";
-
-		Cursor cursor = db.query(
-				KeepContract.KeepEntry.TABLE_NAME,   // The table to query
-				projection,             // The array of columns to return (pass null to get all)
-				selection,              // The columns for the WHERE clause
-				selectionArgs,          // The values for the WHERE clause
-				null,                   // don't group the rows
-				null,                   // don't filter by row groups
-				null               // The sort order
-		);
-		List itemIds = new ArrayList<>();
-		while(cursor.moveToNext()) {
-			long itemId = cursor.getLong(
-					cursor.getColumnIndexOrThrow(KeepContract.KeepEntry._ID));
-			itemIds.add(itemId);
-		}
-		cursor.close();
-		Log.d("Keep de la db :", (String) itemIds.get(0));
-
-*/
 
 		FloatingActionButton fab = findViewById(R.id.fab); // Bouton flottant
 		fab.setOnClickListener(new View.OnClickListener() {
