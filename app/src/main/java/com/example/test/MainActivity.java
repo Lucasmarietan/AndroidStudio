@@ -52,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
 		Log.d("L'ID du Keep mis dans la BDD :", String.valueOf(idKeep));
 		Keep keepDB = db.getKeep(idKeep);
 		Log.d("Le titre du Keep recup de la BDD", keepDB.getTitre());
+		db.updateKeep("Keep 1", "Nouveau texte");
+		keepDB = db.getKeep(idKeep);
+		Log.d("L'Keep a jour :", keepDB.getTexte());
+		int num = db.deleteKeep("Keep 1");
+//		keepDB = db.getKeep(idKeep);
+		Log.d("L'Keep delllllete :", String.valueOf(num));
 
 		FloatingActionButton fab = findViewById(R.id.fab); // Bouton flottant
 		fab.setOnClickListener(new View.OnClickListener() {
