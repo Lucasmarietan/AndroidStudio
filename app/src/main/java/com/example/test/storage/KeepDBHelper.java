@@ -11,6 +11,9 @@ import androidx.annotation.RequiresApi;
 
 import com.example.test.business.Keep;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Thankfully inspired by https://github.com/ravi8x/AndroidSQLite
  */
@@ -59,5 +62,36 @@ public class KeepDBHelper extends SQLiteOpenHelper {
 		Keep keep = new Keep(cursor.getString(cursor.getColumnIndex(Keep.COLUMN_TITRE)), cursor.getString(cursor.getColumnIndex(Keep.COLUMN_TEXTE)));
 		cursor.close();
 		return keep;
+	}
+
+	public List<Keep> getAllKeeps() {
+		List<Keep> keeps = new ArrayList<>();
+		String selectQuery = "SELECT  * FROM " + Keep.TABLE_NAME + " ORDER BY " + Keep.COLUMN_NUM + " DESC";
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		if (cursor.moveToFirst()) {
+			do {
+				Keep keep = new Keep(cursor.getString(cursor.getColumnIndex(Keep.COLUMN_TITRE)), cursor.getString(cursor.getColumnIndex(Keep.COLUMN_TEXTE)));
+				keeps.add(keep);
+			} while (cursor.moveToNext());
+		}
+		db.close();
+		return keeps;
+	}
+
+	public int deleteKeep (String titre) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		int numero = db.delete(Keep.TABLE_NAME, Keep.COLUMN_TITRE + " = ?",
+				new String[]{String.valueOf(titre)});
+		db.close();
+		return numero;
+	}
+
+	public int updateKeep (String titre, String texte) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(Keep.COLUMN_TEXTE, texte);
+		return db.update(Keep.TABLE_NAME, values, Keep.COLUMN_TITRE + " = ?",
+				new String[]{String.valueOf(titre)});
 	}
 }
